@@ -12,3 +12,18 @@ client_only_mod = true
 
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
+
+configuration_options =
+{
+    {
+        name = "REMAP_SOUND",
+        label = "Change Sound",
+        options =
+        {
+            { description = "Default", data = true },
+            { description = "Meme", data = false },
+        },
+        default = false,
+        hover = "You can turn off meme sound if you want.",
+    },
+}
