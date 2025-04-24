@@ -1,5 +1,5 @@
 name = "Rock Beefalo"
-version = "0.0.1"
+version = "1.0.0"
 
 description = "Change look and sound that beefalo makes when you approach"
 author = "Temort"
@@ -16,7 +16,7 @@ icon = "modicon.tex"
 configuration_options =
 {
     {
-        name = "REMAP_SOUND",
+        name = "VANILLA_SOUND",
         label = "Change Sound",
         options =
         {

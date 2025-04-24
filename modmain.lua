@@ -4,23 +4,31 @@ Assets = {
 	Asset("SOUND", "sound/rockbeefalo.fsb"),
 }
 
-
-local remapSound = GetModConfigData("REMAP_SOUND")
-if not remapSound then RemapSoundEvent("dontstarve/beefalo/curious", "rockbeefalo/beefalo/curious")
-else RemapSoundEvent("rockbeefalo/beefalo/curious", "dontstarve/beefalo/curious") end
-
+local useVanillaSound = GetModConfigData("VANILLA_SOUND")
+if not useVanillaSound then RemapSoundEvent("dontstarve/beefalo/curious", "rockbeefalo/beefalo/curious")
+else RemapSoundEvent("dontstarve/beefalo/curious", "dontstarve/beefalo/curious") end
 
 AddPrefabPostInit("beefalo", function(inst)
     local lastBank = "beefalo"
+    
     local function UpdateBank(inst)
-        if inst:IsValid() and inst.AnimState then
-            local newBank = inst.AnimState:IsCurrentAnimation("alert_idle") and "rockbeefalo" or "beefalo"
-            if newBank ~= lastBank then
-                inst.AnimState:SetBank(newBank)
-                lastBank = newBank
-            end
+        if not (inst and inst:IsValid()) then
+            return
+        end
+
+        local animState = inst.AnimState
+        if not animState then
+            return
+        end
+
+        local newBank = animState:IsCurrentAnimation("alert_idle") and "rockbeefalo" or "beefalo"
+
+        if newBank ~= lastBank then
+            animState:SetBank(newBank)
+            lastBank = newBank
         end
     end
+
     inst:ListenForEvent("animover", UpdateBank)
     inst:ListenForEvent("newstate", UpdateBank)
 end)
