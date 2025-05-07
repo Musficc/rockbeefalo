@@ -1,5 +1,5 @@
 name = "Rock Beefalo"
-version = "1.0.0"
+version = "1.0.1"
 
 description = "Change look and sound that beefalo makes when you approach"
 author = "Temort"
